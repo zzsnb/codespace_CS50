@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+        <title>Birthdays</title>
+        <script>
+            function DeleteRow(rowID){
+                rowNumber = rowID.split('-')[1];
+                fetch('/delete', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ row_id: rowNumber }), // 传递行ID
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // 成功后刷新页面
+                        location.reload();
+                    } else {
+                        console.error('Failed to delete row');
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Birthdays</h1>
+        </div>
+        <div class="container">
+            <div class="section">
+
+                <h2>Add a Birthday</h2>
+                <!-- TODO: Create a form for users to submit a name, a month, and a day -->
+                <form action="/" method="POST">
+                    <input name="name" placeholder="Name" type="text">
+                    <input name="month" placeholder="Birth Month" type="number" min="1" max="12">
+                    <input name="day" placeholder="Birth Day" type="number" min="1" max="31">
+                    <input type="submit" value="Add birthday">
+                </form>
+            </div>
+
+            <div class="section">
+
+                <h2>All Birthdays</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Birthday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- TODO: Loop through the database entries to display them in this table -->
+                        {% for birthday in birthdays %}
+                            <tr id="row-{{ loop.index }}">
+                                <td>{{birthday.name}}</td>
+                                <td>{{birthday.month}}/{{birthday.day}}</td>
+                                <!--i will add a delete function here-->
+                                <td><button onclick="DeleteRow('row-{{ loop.index }}')">Delete</button></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3>I confess there are much bugs.For example,you can not delete the row when the rows before were deleted.</h3>
+        </div>
+    </body>
+</html>

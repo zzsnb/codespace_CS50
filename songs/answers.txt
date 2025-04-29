@@ -1,0 +1,11 @@
+(I'm not a master in English.So if there are some syntax wrongs,please forgive me.)
+
+For the first quesion,I think we can calculate the average of key,energy,danceability,loudness and other characteristics.
+Then,find the two datas is most distinct from the world's average,and allocate two words for them.
+
+Problems:
+    1.some music appetite can not be described with just a single data.
+    2.the possibility of outcome is limited.
+    3.without the data of what the frequency or times that the user listened to the songs,the outcome will be rough.
+    Because their appetite is decided by the top 10 or even the top 1 song they repeat again and again but not the
+    100 songs;

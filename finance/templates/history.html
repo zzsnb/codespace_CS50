@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    history
+{% endblock %}
+
+{% block main %}
+    <table class="table">
+        <thead>
+            <th class="text-start">Symbol</th>
+            <!--use the class to make it more beautiful.(from the example)-->
+            <th class="text-end">Shares</th>
+            <th class="text-end">Price</th>
+            <th class="text-end">Transacted</th>
+        </thead>
+        <tbody>
+            {% for row in rows %}
+
+                    <tr>
+                        <td class="text-start">{{ row.symbol }}</td>
+                        <td class="text-end">{{ row.shares }}</td>
+                        <td class="text-end">{{ row.price | usd }}</td>
+                        <td class="text-end">{{ row.transacted }}</td>
+                    </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+<!--这一行代码使的上面的网页栏能够一直存在-->
+
+{% block title %}
+    Register
+{% endblock %}
+<!--这一行是为了向layout.html中的block title填入内容-->
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="password" placeholder="Password" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" name="confirmation" placeholder="Password (again)" type="password">
+        </div>
+        <button class="btn-success" type="submit">Register</button>
+    </form>
+{% endblock %}
